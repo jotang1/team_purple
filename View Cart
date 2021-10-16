@@ -1,0 +1,102 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+	
+	$user_data  = check_login($con);
+	
+	// Write query for pulling data;
+	$sql = 'SELECT * FROM purchase';
+	
+	// Make query & get resulkts;
+	$result = mysqli_query($con, $sql);
+	
+	// fetch the resuling rows as an array;
+	$purchase= mysqli_fetch_all($result, MYSQLI_ASSOC);
+	
+	// free result from memory;
+	mysqli_free_result($result);
+	
+	// close connection
+	mysqli_close($con);
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cart</title>
+	<style>
+	*{
+		box-aiing: border-box;
+	}
+  
+	body{
+		margin: 0;
+		background: lightblue;
+		text-align:center;
+	}
+  
+	</style>
+</head>
+	
+<body>
+	<style type="text/css">
+	
+	#button{
+		padding: 10px;
+		width: 200px;
+		color: white;
+		background-color: blue;
+		border: none;
+	}
+	
+	#box{	
+		background-color: grey;
+		align:center;
+		margin:auto;
+		width:200px;
+		padding:20px;
+	}
+	
+	</style>
+	<a href="logout.php">Logout</a>
+	<h1>Welcome to Love You A Latte!</h1>
+
+	<h2>View Cart</h2>
+	<div id="box">
+		<div class="card-action right-align">
+			<a class="brand-text" href="order.php"><input id ="button" type="submit" value="Add Additional Item"></a>
+		</div>
+			<br>
+			<div>
+			<a class="brand-text" href="delete.php"><input id ="button" type="submit" value="Cancel Item: Order ID needed"></a>
+			</div>
+			<br>
+			<div>
+			<a class="brand-text" href="modify.php"><input id ="button" type="submit" value="Modify Cart: Order ID Needed"></a>
+			</div>
+			<br>
+			<a class="brand-text" href="total.php"><input id ="button" type="submit" value="Continue to Check Out"></a>
+	</div>
+	
+	<h3 class="center grey-text"><u>Ready for pick-up</u></h3>
+		<div class="container">
+			<div class="row">
+			<?php foreach($purchase as $purchase1){ ?>
+				<div class="col s6 md3">
+					<div class="card z-depth-0">
+						<div class="card-content center">
+							<h4>User: <?php echo htmlspecialchars($purchase1['user_name']); ?></h4>
+							<h4>Order ID: <?php echo htmlspecialchars($purchase1['order_id']); ?></h4>
+							<h4>Item: <?php echo htmlspecialchars($purchase1['item']); ?></h4>
+							<h4>Price: <?php echo htmlspecialchars($purchase1['price']); ?> </h4>
+							<h4>Date and Time: <?php echo htmlspecialchars($purchase1['date']); ?></h4>
+						</div>
+					</div>
+				</div>			
+			<?php } ?>
+			</div>
+		</div>
+</body>
+</html>
