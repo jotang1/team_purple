@@ -1,0 +1,306 @@
+<?php
+
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+	
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		// Something was posted:
+		$user_name = $_POST['user_name'];
+		$item = $_POST['item'];
+		$price = $_POST['price'];
+		
+		if (!empty($item) && !empty($price) && !is_numeric($item))
+		{
+			// Save to database;
+			$order_id = random_num(20);
+			$query = "insert into purchase (order_id, user_name, item, price) values ('$order_id', '$user_name', '$item', '$price')";
+			
+			mysqli_query($con, $query);
+			
+			// After accoount order, redirect the user to View Cart page:
+			header("Location: output.php");
+			die;
+		}
+		
+		else
+		{
+			echo "Please enter valid information.";
+		}
+	}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order</title>
+	<style>
+	*{
+		box-sizng:border-box;
+	}
+	body{
+		margin:0;
+		background:skyblue;
+		text-align:center;
+	}
+	
+	.container{
+		max-width:1680px;
+		height:240px;
+		margin:auto;
+		background:#f2f2f2;
+		overflow:auto;
+	}
+	
+	.gallery{
+		margin:5px;
+		border:1ps solid #ccc;
+		float:left;
+		width:170px;
+		height:170px;
+	}
+	
+	.gallery img{
+		width:168px;
+		height:168px;
+	}
+	
+	.desc{
+		padding: 15px;
+		text-aligh:center;
+		font-family: Arial;
+		font-weight: bold;
+	}
+	
+	</style>
+</head>
+
+<body>
+
+	<style type="text/css">
+	#text{	
+		height:25px;
+		border-radius:2px;
+		padding:4px;
+		border:solid thin #ass;
+		width:100%;
+	}
+	
+	#button{
+		padding:10px;
+		width:200px;
+		color:white;
+		background-color:blue;
+		border:none;
+	}
+	
+	#box{	
+		background-color:grey;
+		margin:auto;
+		width:300px;
+		padding:20px;
+	}
+	
+	table {
+		text-align: left;
+		margin: auto;
+		border: 5px solid #000066;
+		width: 1600px;
+	}
+	
+	caption {
+		font-family: verdana, sans-serif;
+		font-weight: bold;
+		font-size: 1.2em;
+		padding-bottom: 0.5em;
+	}
+	
+	td, th {
+		align: left;
+		padding: 0.5em;
+		border-style: none;
+		font-family: Arial, sans-serif;
+	}
+		
+	.altrow {background-color: yellow}
+	
+	</style>
+	<h1>Welcome to Love You A Latte!</h1>
+		
+		<div class="container">
+			<div class="gallery">
+				<img src ="coffee-H.jpeg" >
+					<div class = "desc">Coffee(Hot)</div>
+			</div>
+			
+			<<div class="gallery">
+				<img src ="coffee-C.jpg" >
+					<div class = "desc"> Coffee(Cold)</div>
+			</div>
+			
+			<div class="gallery">
+				<img src ="cappuccino.jpeg" >
+					<div class = "desc">Cappuccino(Hot)</div>
+			</div>
+			
+			<div class="gallery">
+				<img src ="cappuccino-C.jpg" >
+					<div class = "desc">Cappuccino(Cold)</div>
+			</div>
+			
+			<div class="gallery">
+				<img src ="latte.jpeg" >
+					<div class = "desc">Latte(Hot)</div>
+			</div>
+			
+			<div class="gallery">
+				<img src ="latte-C.jpg" >
+					<div class = "desc">Latte(Cold)</div>
+			</div>
+			
+			<div class="gallery">
+				<img src ="espresso.jpeg">
+					<div class = "desc">Espresso</div>
+			</div>
+			
+			<div class="gallery">
+				<img src ="scone.jpeg" >
+					<div class = "desc">Scone</div>
+			</div>
+			
+			<div class="gallery">
+				<img src ="biscotti.jpeg" >
+					<div class = "desc">Biscotti</div>
+			</div>
+		</div>
+		
+		<br>
+	
+	<table border = "1">
+	<caption>Menu</caption>		
+						<tr>
+							<th>Name</th>
+							<th>Price (L)</th>
+							<th>Price (M)</th>
+							<th>Price (S)</th>
+							<th>Choice</th>
+						</tr>
+						<tr class = "altrow">
+							<td><b/>Coffee (hot/cold)</b></td>
+							<td>$3.75 (L)</td>
+							<td>$2.75 (M)</td>
+							<td>$1.75 (S)</td>
+							<td>Regular, Decaf, Iced</td>
+						</tr>
+						<tr>
+							<td><b>Cappuccino (hot/cold)</b></td>
+							<td>$4.45 (L)</td>
+							<td>$3.45 (M)</td>
+							<td>$2.45 (S)</td>
+							<td>Regular, Vanilla, Caramel, Pumpkin spice, Mocha, Caramel mocha, Coconut, Sugar free</td>
+						</tr>
+						<tr class = "altrow">
+							<td><b>Latte (hot/cold)</b></td>
+							<td>$4.95 (L)</td>
+							<td>$3.95 (M)</td>
+							<td>$2.95 (S)</td>
+							<td>Description: A shot of expresso with steamed milk and different flavor(s). <br> 
+							Choice: Regular, Vanilla, Caramel, Pumpkin spice, Mocha, Caramel mocha, Coconut, Lite, MCP, Sugar free</td>
+						</tr>
+						<tr>
+							<td><b>Espresso</b></td>
+							<td>$4.45 (Trple shot)</td>
+							<td>$3.45 (Double shot)</td>
+							<td>$2.45 (Single shot)</td>
+							<td>Regular, House, Special</td>
+						</tr>
+						<tr class = "altrow">
+							<td><b>Scone</b></td>
+							<td>$4.45 (3)</td>
+							<td>$3.45 (2)</td>
+							<td>$2.45 (1)</td>
+							<td>Raisin, Chocolate, Cream, Lemon, Sour Creme</td>
+						</tr>
+						<tr>
+							<td><b>Biscotti</b></td>
+							<td>$4.95 (3)</td>
+							<td>$3.55 (2)</td>
+							<td>$1.85 (1)</td>
+							<td>Almond, Gluten free, Nutella, Pumpkin banana, Pumpkin spice</td>
+						</tr>	
+	</table>	
+	<br><br>
+	
+	<div id="box"> 	
+		<form method="post">
+			<div style="font-size: 30px; margin: 10 px; color: white">Order</div><br>
+			
+			<div style = "font-size: 20px; margin: 10 px; color: white">User</div>
+			<input id="user" type="text" name="user_name" size="36"><br><br> 
+			
+			<div style = "font-size: 20px; margin: 10 px; color: white">Item</div>
+			<input id="item" type="text" name="item", list="items" size ="36"><br><br>
+				<datalist id="items">
+					<option value="Coffee(L/Hot)" label="Coffee(L/Hot)">
+					<option value="Coffee(M/Hot)" label="Coffee(M/Hot)">
+					<option value="Coffee(S/Hot)" label="Coffee(S/Hot)">
+					<option value="Coffee(L/Cold)" label="Coffee(L/Cold)">
+					<option value="Coffee(M/Cold)" label="Coffee(M/Cold)">
+					<option value="Coffee(S/Cold)" label="Coffee(S/Cold)">
+					<option value="Latte(L/Hot)" label="Latte(L/Hot)">
+					<option value="Latte(M/Hot)" label="Latte(M/Hot)">
+					<option value="Latte(S/Hot)" label="Latte(S/Hot)">
+					<option value="Latte(L/Cold)" label="Latte(L/Cold)">
+					<option value="Latte(M/Cold)" label="Latte(M/Cold)">
+					<option value="Latte(S/Cold)" label="Latte(S/Cold)">
+					<option value="Espresso(L)" label="Espresso(L)">
+					<option value="Espresso(M)" label="Espresso(M)">
+					<option value="Espresso(S)" label="Espresso(S)">
+					<option value="Cappuccino(L/Hot)" label="Cappuccino(L/Hot)">
+					<option value="Cappuccino(M/Hot)" label="Cappuccino(M/Hot)">
+					<option value="Cappuccino(S/Hot)" label="Cappuccino(S/Hot)">
+					<option value="Cappuccino(L/Cold)" label="Cappuccino(L/Cold)">
+					<option value="Cappuccino(M/Cold)" label="Cappuccino(M/Cold)">
+					<option value="Cappuccino(S/Cold)" label="Cappuccino(S/Cold)">
+					<option value="Scone" label="Scone">
+					<option value="Biscotti" label="Biscotti">
+				</datalist>
+			
+			<div style = "font-size: 20px; margin: 10 px; color: white">Price</div>
+			<input id="price" type="number_format" name="price" list="prices" size ="36"><br><br>
+				<datalist id="prices">
+					<option value="Coffee(H/C)" label="Coffee(H/C)">
+					<option value="1.75" label="1.75">
+					<option value="2.75" label="2.75">
+					<option value="3.75" label="3.75">
+					<option value="Latte(H/C)" label="Latte(H/C)">
+					<option value="2.95" label="2.95">
+					<option value="3.95" label="3.95">
+					<option value="4.95" label="4.95">
+					<option value="Espresso" label="Espresso">
+					<option value="1.75" label="1.75">
+					<option value="2.75" label="2.75">
+					<option value="3.75" label="3.75">
+					<option value="Cappuccino(H/C)" label="Cappuccino(H/C)">
+					<option value="2.45" label="2.45">
+					<option value="3.45" label="3.45">
+					<option value="4.45" label="4.45">
+					<option value="Scone (1 to 3)" label="Scone (1 to 3)">
+					<option value="1.55" label="1.55">
+					<option value="2.75" label="2.75">
+					<option value="3.75" label="3.75">
+					<option value="Biscotti (1 to 3)" label="Biscotti (1 to 3)">
+					<option value="1.85" label="1.85">
+					<option value="3.55" label="3.55">
+					<option value="4.95" label="4.95">
+			</datalist>
+			<input id ="button" type="submit" value="Add to Cart"><br><br>
+      
+			<a href="output.php"><input id ="button" type="submit" value="Click to Continously Order"></a><br><br>
+		</form>
+	
+	</div>
+</body>
+</html>
