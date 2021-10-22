@@ -1,0 +1,78 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+	
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		$order_id = $_POST['order_id'];
+		
+			$query = "delete from purchase where order_id = '$order_id' limit 1";
+			mysqli_query($con, $query);
+			
+			header("Location: output.php");
+			die;
+	}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Oancel Order</title>
+	<style>
+  *{
+		box-aiing: border-box;
+	}
+  
+	body{
+		margin: 0;
+		background: lightblue;
+		text-align:center;
+	}
+  
+	</style>
+</head>
+
+<body>
+
+	<style type="text/css">
+	#text{	
+		height: 25px;
+		border-radius: 5px;
+		padding: 4px;
+		border: solid thin #ass;
+		width: 100%;
+	}
+	
+	#button{
+		padding: 10px;
+		width: 200px;
+		color: white;
+		background-color: blue;
+		border: none;
+	}
+	
+	#box{	
+		background-color: grey;
+		margin: auto;
+		width: 480px;
+		padding: 20px;
+	}
+  
+	</style>
+	
+	<h1>Welcome to Love You A Latte!</h1>
+	<div id="box"> 	
+		<form method="post">
+    
+			<div style="font-size: 30px; margin: 10 px; color: white">Cancel Item: Please Enter Order ID</div><br>
+			<div style = "font-size: 20px; margin: 10 px; color: white">Order Id</div>
+			<input id="order-id" type="text" name="order_id" size="35"><br><br>
+			<input id ="button" type="submit" value="Cancel"><br><br>
+			<a href="output.php"><input id ="button" type="submit" value="Click to Continously Order"></a><br><br>
+		
+    </form>	
+	</div>
+</body>
+</html>
