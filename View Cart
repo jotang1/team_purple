@@ -6,19 +6,14 @@ session_start();
 	
 	$user_data  = check_login($con);
 	
-	// Write query for pulling data;
 	$sql = 'SELECT * FROM purchase';
 	
-	// Make query & get resulkts;
 	$result = mysqli_query($con, $sql);
 	
-	// fetch the resuling rows as an array;
 	$purchase= mysqli_fetch_all($result, MYSQLI_ASSOC);
 	
-	// free result from memory;
-	mysqli_free_result($result);
+	mysqli_free_result($result);	
 	
-	// close connection
 	mysqli_close($con);
 ?>
 
