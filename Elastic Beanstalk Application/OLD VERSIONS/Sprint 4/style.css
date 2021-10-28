@@ -1,0 +1,95 @@
+
+	*{
+	box-sizing: border-box;
+	}
+	body{
+		font-family: Arial, Helvetica, sans-serif;
+
+	}
+	.container{
+
+		margin:auto;
+	overflow: hidden; }
+	#hero{
+		min-height: 500px;
+		background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("img/fun.jpg");
+		background-repeat:no-repeat;
+		  background-size: cover;
+		color: #fff;
+		text-align: center;
+		text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+		border: 5px solid red ;
+	  padding: 50px;
+
+		}
+
+
+		#hero h1{
+		margin-top: 100px;
+		font-size: 55px;
+		margin-bottom: 10px;
+		}
+
+
+
+
+		#hero3{
+		min-height: 600px;
+		background-image: url("img/fun1.jpg");
+		background-repeat:no-repeat;
+		background-size: cover;
+		color: #fff;
+		text-align: center;
+		padding: 25px;
+		}
+
+
+	h1{
+	background-color: green;
+	margin-top:0px;
+	padding: 20px;
+	margin-bottom:0px;
+	text-align: center;
+	font-size: 30px;
+	color: white;
+	line-height:80px;}
+
+
+	.imgHeader img{
+		width: 150px;
+		height: 100px;
+		position: absolute;
+		left:0;
+		top:0;
+		margin-top:18px;
+		margin-left:10px;
+	}
+
+	ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: orange;
+	}
+
+
+	li {
+	float: left;
+	padding: 20px;
+	border-right:1px solid #bbb;
+
+	}
+
+	li:last-child {
+	border-right: none;
+	}
+
+	li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 20px 18px;
+	text-decoration: none;
+
+	}
