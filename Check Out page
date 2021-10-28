@@ -42,7 +42,7 @@ session_start();
 	<h2> Hello, <?php echo $user_data['user_name']; ?> </h2>
 	<font face="Arial" size="10px" color="#ff0000">Your Total for this visit is: $<?php echo number_format((float)$row['sum'], 2, '.', ''); ?></font><br><br>
 		
-	<a href> Pleas click here for payment</a>
+	<a href> Please click here for payment</a>
 	<br><br>
 	
 	<h3 class="center grey-text"><u>Items Ordered</u></h3>
