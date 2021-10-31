@@ -11,7 +11,7 @@ session_start();
 
 	$menu= mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-	mysqli_free_result($result);
+	//mysqli_free_result($result);
 
 	mysqli_close($con);
 ?>
@@ -127,6 +127,27 @@ session_start();
 							<h2 style="color:#cc0000"> <?php echo htmlspecialchars($menu1['product_name']); ?></h2>
 							<h4>Price ($): <?php echo htmlspecialchars($menu1['price_sm']); ?> (S), <?php echo htmlspecialchars($menu1['price_med']); ?> (M), <?php echo htmlspecialchars($menu1['price_lg']); ?> (L)</h4>
 							<h4><mark><i><?php echo htmlspecialchars($menu1['selections']); ?></mark></i></h4>
+							<form action="" method="POST">
+						    <h4>
+									Quantity: <input type="number" name="qty" min="0" step="1" max="10" autocomplete="off">
+									Size: <input type="select" name="size" list="<?php echo $menu1['product_id']; ?>_sizes" size="8" autocomplete="off">
+							      <datalist id="<?php echo $menu1['product_id']; ?>_sizes">
+							      	<option value="<?php echo "Small"; ?>"><?php echo $menu1['price_sm']; ?></option>
+											<option value="<?php echo "Medium"; ?>"><?php echo $menu1['price_med']; ?></option>
+											<option value="<?php echo "Large"; ?>"><?php echo $menu1['price_lg']; ?></option>
+							      </datalist>
+									Selection: <input type="select" name="selection" list="<?php echo $menu1['product_id']; ?>_selections" size="16" autocomplete="off">
+										<datalist id="<?php echo $menu1['product_id']; ?>_selections">
+											<?php
+											$selectionArray = [];
+											$selectionArray = explode(", ", $menu1['selections']);
+											foreach (($selectionArray) as $selection) { ?>
+													<option value="<?php echo $selection; ?>"></option>
+											<?php } ?>
+										</datalist>
+										<input type="submit" value="Add to Cart"><br><br>
+								</h4>
+						  </form>
 							<h4>----------------------------------------------</h4>
 						</div>
 					</div>
