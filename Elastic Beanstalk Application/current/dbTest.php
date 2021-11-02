@@ -67,7 +67,9 @@
     <p>Item Price Medium (int or decimal):</p>
     <input type="number" step=0.01 name="price_med" size="36" autocomplete="off">
     <p>Item Price Large (int or decimal):</p>
-    <input type="number" step=0.01 name="price_lg" size="36" autocomplete="off"><br><br>
+    <input type="number" step=0.01 name="price_lg" size="36" autocomplete="off">
+    <p>Item Description:</p>
+    <input type="text" name="description" size="36" autocomplete="off"><br><br>
     <input type="submit" value="Add Product"><br><br>
   </form>
 
@@ -101,13 +103,14 @@
       $price_sm = $_POST['price_sm'];
       $price_med = $_POST['price_med'];
       $price_lg = $_POST['price_lg'];
+      $description = $_POST['description'];
       $item_rem = $_POST['item_rem'];
 
       if (!empty($product_name) && !is_numeric($product_name) && !empty($price_sm) && !empty($price_med) && !empty($price_lg))
       {
         //Add item to database
-        $add_query = $conn->prepare("INSERT INTO LYALPurple.Products (product_name, price_sm, price_med, price_lg) VALUES (?, ?, ?, ?)");
-        $add_query->bind_param("sddd", $product_name, $price_sm, $price_med, $price_lg);
+        $add_query = $conn->prepare("INSERT INTO LYALPurple.Products (product_name, price_sm, price_med, price_lg, description) VALUES (?, ?, ?, ?, ?)");
+        $add_query->bind_param("sddds", $product_name, $price_sm, $price_med, $price_lg, $description);
         $add_query->execute();
         die;
       }

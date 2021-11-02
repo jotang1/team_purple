@@ -71,7 +71,7 @@
 <body>
 	<!-- Add Header -->
   <?php include("header.html");?>
-	
+
 
 
 		<div class="container">
@@ -131,7 +131,7 @@
 						<div class="card-content center">
 							<h2 style="color:#cc0000"> <?php echo htmlspecialchars($menu1['product_name']); ?></h2>
 							<h4>Price ($): <?php echo htmlspecialchars($menu1['price_sm']); ?> (S), <?php echo htmlspecialchars($menu1['price_med']); ?> (M), <?php echo htmlspecialchars($menu1['price_lg']); ?> (L)</h4>
-							<h4><mark><i><?php echo htmlspecialchars($menu1['selections']); ?></mark></i></h4>
+							<h4><mark><i><?php echo htmlspecialchars($menu1['description']); ?></mark></i></h4>
 							<form action="" method="POST">
 						    <h4>
 									<!-- Form for "Add to Cart" button - Retrieves item properties from database for input options -->
@@ -148,17 +148,6 @@
 											<option value="<?php echo "Medium"; ?>"><?php echo $menu1['price_med']; ?></option>
 											<option value="<?php echo "Large"; ?>"><?php echo $menu1['price_lg']; ?></option>
 							      </datalist>
-									<!-- Populate selection options list from database
-											 Splits the string of selections using ", " delimiter, adds each selection to an array, then creates options for each array value -->
-									Selection: <input type="select" name="selection" list="<?php echo $menu1['product_id']; ?>_selections" size="16" autocomplete="off">
-										<datalist id="<?php echo $menu1['product_id']; ?>_selections">
-											<?php
-											$selectionArray = [];
-											$selectionArray = explode(", ", $menu1['selections']);
-											foreach (($selectionArray) as $selection) { ?>
-													<option value="<?php echo $selection; ?>"></option>
-											<?php } ?>
-										</datalist>
 									<!-- Submit button -->
 									<input type="submit" value="Add to Cart"><br><br>
 								</h4>

@@ -57,7 +57,6 @@
 		<table style="margin-left: auto; margin-right: auto;">
 			<tr>
 				<th>Product Name</th>
-				<th>Selection</th>
 				<th>Size</th>
 				<th>Price</th>
 				<th>Quantity</th>
@@ -71,7 +70,6 @@
 	?>
 			<tr>
 				<td><?php echo $item['itemName']; ?></td>
-				<td><?php echo $item['itemOption']; ?></td>
 				<td><?php echo $item['itemSize']; ?></td>
 				<td><?php echo "$" . number_format($itemPrice, 2); ?></td>
 				<td><?php echo $item['quantity']; ?></td>
@@ -95,7 +93,6 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
 				<td>
 					<form action="" method="POST">
 						<button name="clearCart">Clear Cart</button>
@@ -103,7 +100,6 @@
 				</td>
 				<td><?php echo "$" . number_format($runningTotal, 2); ?></td>
 			<tr>
-				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>

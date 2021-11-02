@@ -22,7 +22,6 @@ class cartItem {
   public $itemName;
   public $quantity;
   public $itemSize;
-  public $itemOption;
   public $price_sm;
   public $price_med;
   public $price_lg;
@@ -34,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $itemName = $_POST['itemName'];
   $quantity = $_POST['qty'];
   $itemSize = $_POST['size'];
-  $itemOption = $_POST['selection'];
   $price_sm = $_POST['price_sm'];
   $price_med = $_POST['price_med'];
   $price_lg = $_POST['price_lg'];
@@ -59,14 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     header("Refresh:0");
   }
 
-  if (!empty ($itemID) && !empty($itemName) && !empty($quantity) && !empty($itemSize) && !empty($itemOption)) {
+  if (!empty ($itemID) && !empty($itemName) && !empty($quantity) && !empty($itemSize)) {
     //Add item shopping cart if all fields are filled
     $newItem = new cartItem();
     $newItem->itemId = $itemID;
     $newItem->itemName = $itemName;
     $newItem->quantity = $quantity;
     $newItem->itemSize = $itemSize;
-    $newItem->itemOption = $itemOption;
     $newItem->price_sm = $price_sm;
     $newItem->price_med = $price_med;
     $newItem->price_lg = $price_lg;
@@ -86,7 +83,6 @@ $testItem->itemId = 200;
 $testItem->itemName = "TEST ITEM";
 $testItem->quantity = 1;
 $testItem->itemSize = "LARGE";
-$testItem->itemOption = "NONE";
 $testItem->price_sm = 1;
 $testItem->price_med = 2;
 $testItem->price_lg = 3;
