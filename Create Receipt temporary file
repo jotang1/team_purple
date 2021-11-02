@@ -23,9 +23,7 @@
          "as follows:\n<br><b> " .
          $row["title"] . " " .
          $row["firstname"] . " " .
-         $row["initial"] . " " .
-         $row["surname"] . "\n<br>" .
-         $row["addressline1"] . "\n";
+         
     if ($row["addressline2"] != "")
        echo "\n<br>" .
             $row["addressline2"];
@@ -43,9 +41,4 @@
     if ($row["fax"] != "")
        echo "\n<br><b>Fax: " .
             $row["fax"] . "</b>";
-    $row["dob"] = substr($row["birth_date"], 8, 2) . "/" .
-                  substr($row["birth_date"], 5, 2) . "/" .
-                  substr($row["birth_date"], 0, 4);
-    echo "\n<br><b>Date of Birth: " .
-         $row["dob"] . "</b>\n<br>";
   }
