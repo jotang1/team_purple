@@ -24,12 +24,6 @@
          $row["title"] . " " .
          $row["firstname"] . " " .
          
-    if ($row["addressline2"] != "")
-       echo "\n<br>" .
-            $row["addressline2"];
-    if ($row["addressline3"] != "")
-       echo "\n<br>" .
-            $row["addressline3"];
     echo "\n<br>" .
          $row["city"] . " " .
          $row["state"] . " " .
