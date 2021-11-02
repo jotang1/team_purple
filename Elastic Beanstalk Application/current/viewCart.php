@@ -1,20 +1,4 @@
 <?php
-session_start();
-	//Connection and function files
-	include("connection.php");
-	include("functions.php");
-
-  // Pull data from "menu" Table in database
-	$sql = 'SELECT * FROM LYALPurple.Products';
-
-	$result = mysqli_query($con, $sql);
-
-	$menu= mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-	//mysqli_free_result($result);
-
-	mysqli_close($con);
-
 	//Initialize shopping Cart
 	include("cart.php");
 ?>
@@ -46,24 +30,22 @@ session_start();
 
 <body>
 	<!-- Add Header -->
-  <?php include("header.html");?>
-
-	<?php
+  <?php include("header.html");
   //Get shopping cart array
-  $shoppingCart = json_decode($_COOKIE[shoppingCart], true);
+  $shoppingCart = json_decode($_COOKIE['shoppingCart'], true);
 
 	//Get item price from size
 	function getItemPrice(array $item, String $size){
 		$price = 0;
 		switch ($size){
 			case "Small":
-				$price=$item[price_sm];
+				$price=$item['price_sm'];
 				break;
 			case "Medium":
-				$price=$item[price_med];
+				$price=$item['price_med'];
 				break;
 			case "Large":
-				$price=$item[price_lg];
+				$price=$item['price_lg'];
 				break;
 		}
 		return $price;
@@ -84,15 +66,15 @@ session_start();
 				<th>GRAND TOTAL</th>
 			</tr>
 	<?php if ($shoppingCart) { foreach($shoppingCart as $item){
-		$itemPrice = getItemPrice($item, $item[itemSize]);
-		$subtotal = $item[quantity] * $itemPrice;
+		$itemPrice = getItemPrice($item, $item['itemSize']);
+		$subtotal = $item['quantity'] * $itemPrice;
 	?>
 			<tr>
-				<td><?php echo $item[itemName]; ?></td>
-				<td><?php echo $item[itemOption]; ?></td>
-				<td><?php echo $item[itemSize]; ?></td>
+				<td><?php echo $item['itemName']; ?></td>
+				<td><?php echo $item['itemOption']; ?></td>
+				<td><?php echo $item['itemSize']; ?></td>
 				<td><?php echo "$" . number_format($itemPrice, 2); ?></td>
-				<td><?php echo $item[quantity]; ?></td>
+				<td><?php echo $item['quantity']; ?></td>
 				<td><?php echo "$" . number_format($subtotal, 2); ?></td>
 				<td>
 					<form action="" method="POST">
@@ -134,8 +116,8 @@ session_start();
 				    <button name="submitOrder">Place Order</button>
 				  </form>
 					<?php
-					if (isset($_COOKIE['orderTotal'])){
-						echo "Order placed. Total is: $" . number_format($_COOKIE[orderTotal],2);
+					if (isset($_COOKIE['orderTotal']) && ($_COOKIE['orderTotal'] != 0)){
+						echo "Order placed. Total is: $" . number_format($_COOKIE['orderTotal'],2);
 					}
 					?>
 				</td>

@@ -1,8 +1,6 @@
 <?php
-session_start();
-	//Connection and function files
+	//Connection file
 	include("connection.php");
-	include("functions.php");
 
   // Pull data from "menu" Table in database
 	$sql = 'SELECT * FROM LYALPurple.Products';
@@ -11,7 +9,7 @@ session_start();
 
 	$menu= mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-	//mysqli_free_result($result);
+	mysqli_free_result($result);
 
 	mysqli_close($con);
 
@@ -73,20 +71,7 @@ session_start();
 <body>
 	<!-- Add Header -->
   <?php include("header.html");?>
-	<p><?php
-		//Echo shopping items in shopping cart
-		$testArr = json_decode($_COOKIE[shoppingCart], true);
-		echo "Items in cart: " . count($testArr) . "<br>";
-		foreach ($testArr as $testItem){
-			echo "---------------" . "<br>";
-			echo "ID: " . $testItem[itemId] . "<br>";
-			echo "Name: " . $testItem[itemName] . "<br>";
-			echo "Qty: " . $testItem[quantity] . "<br>";
-			echo "Size: " . $testItem[itemSize] . "<br>";
-			echo "Selection: " . $testItem[itemOption] . "<br>";
-		}
-		echo "---------------" . "<br>";
-	?></p>
+	
 
 
 		<div class="container">

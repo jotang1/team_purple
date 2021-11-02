@@ -10,10 +10,10 @@ if (!isset($_COOKIE['shoppingCart'])) {
   //Create it
   $cartItems = [];
   setcookie("shoppingCart", json_encode($cartItems), time() + (86400 * 30), "/"); // 86400 = 1 day
-  header("Refresh:0");
+  //header("Refresh:0");
 } else {
   //Retrieve cookie for list of items in cart (Array)
-  $cartItems = json_decode($_COOKIE[shoppingCart], true);
+  $cartItems = json_decode($_COOKIE['shoppingCart'], true);
 }
 
 //Class for a new shoppingCart item
