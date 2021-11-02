@@ -1,0 +1,51 @@
+<?php
+  // This script shows the user a receipt for their customer
+  // UPDATE or INSERT.
+  // It carries out no database actions and can be
+  // bookmarked. The user must be logged in to view it.
+  include 'include.inc';
+  set_error_handler("errorHandler");
+  // Show the user a customer INSERT or UPDATE receipt
+  function show_HTML_receipt($custID, $connection)
+  {
+    $query = "SELECT * FROM customer
+             WHERE cust_id = $custID";
+    if (!($result = @ mysql_query ($query, $connection)))
+       showerror(  );
+    // There is only one matching row
+    $row = @ mysql_fetch_array($result);
+    echo "\n<h1>Account details for " .
+         "<font color=\"red\">" . $row["email"] .
+         "</font></h1>\n";
+    echo "<p><i>Please record your password " .
+         "somewhere safe for future use</i>\n";
+    echo "<p>Your shipping and billing details are " .
+         "as follows:\n<br><b> " .
+         $row["title"] . " " .
+         $row["firstname"] . " " .
+         $row["initial"] . " " .
+         $row["surname"] . "\n<br>" .
+         $row["addressline1"] . "\n";
+    if ($row["addressline2"] != "")
+       echo "\n<br>" .
+            $row["addressline2"];
+    if ($row["addressline3"] != "")
+       echo "\n<br>" .
+            $row["addressline3"];
+    echo "\n<br>" .
+         $row["city"] . " " .
+         $row["state"] . " " .
+         $row["zipcode"] . "\n<br>" .
+         $row["country"] . "</b><br>\n";
+    if ($row["phone"] != "")
+       echo "\n<br><b>Telephone: " .
+            $row["phone"] . "</b>";
+    if ($row["fax"] != "")
+       echo "\n<br><b>Fax: " .
+            $row["fax"] . "</b>";
+    $row["dob"] = substr($row["birth_date"], 8, 2) . "/" .
+                  substr($row["birth_date"], 5, 2) . "/" .
+                  substr($row["birth_date"], 0, 4);
+    echo "\n<br><b>Date of Birth: " .
+         $row["dob"] . "</b>\n<br>";
+  }
