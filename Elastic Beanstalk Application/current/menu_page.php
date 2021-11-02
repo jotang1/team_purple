@@ -152,6 +152,9 @@ session_start();
 									<!-- Form for "Add to Cart" button - Retrieves item properties from database for input options -->
 									<input type="hidden" name="itemId" value="<?php echo $menu1['product_id']; ?>">
 									<input type="hidden" name="itemName" value="<?php echo $menu1['product_name']; ?>">
+									<input type="hidden" name="price_sm" value="<?php echo $menu1['price_sm']; ?>">
+									<input type="hidden" name="price_med" value="<?php echo $menu1['price_med']; ?>">
+									<input type="hidden" name="price_lg" value="<?php echo $menu1['price_lg']; ?>">
 									Quantity: <input type="number" name="qty" min="0" step="1" max="10" autocomplete="off">
 									<!-- Populate size option list, display related price from database value -->
 									Size: <input type="select" name="size" list="<?php echo $menu1['product_id']; ?>_sizes" size="8" autocomplete="off">
@@ -171,7 +174,7 @@ session_start();
 													<option value="<?php echo $selection; ?>"></option>
 											<?php } ?>
 										</datalist>
-									<!-- Submit button -->	
+									<!-- Submit button -->
 									<input type="submit" value="Add to Cart"><br><br>
 								</h4>
 						  </form>

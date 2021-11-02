@@ -4,9 +4,13 @@
 
 //If shoppingCart cookie does not exist
 if (!isset($_COOKIE['shoppingCart'])) {
+  if (isset($cartItems)){
+    setcookie("shoppingCart", "", time() - 3600);
+  }
   //Create it
   $cartItems = [];
   setcookie("shoppingCart", json_encode($cartItems), time() + (86400 * 30), "/"); // 86400 = 1 day
+  header("Refresh:0");
 } else {
   //Retrieve cookie for list of items in cart (Array)
   $cartItems = json_decode($_COOKIE[shoppingCart], true);
@@ -19,6 +23,9 @@ class cartItem {
   public $quantity;
   public $itemSize;
   public $itemOption;
+  public $price_sm;
+  public $price_med;
+  public $price_lg;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -28,6 +35,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $quantity = $_POST['qty'];
   $itemSize = $_POST['size'];
   $itemOption = $_POST['selection'];
+  $price_sm = $_POST['price_sm'];
+  $price_med = $_POST['price_med'];
+  $price_lg = $_POST['price_lg'];
+  $removeItem = $_POST['removeItem'];
+  $orderTotal = $_POST['orderTotal'];
+
+  if(!empty ($removeItem) || ($removeItem == 0)){
+    unset($cartItems[$removeItem]);
+    setcookie("shoppingCart", json_encode($cartItems), time() + (86400 * 30), "/"); // 86400 = 1 day
+    header("Refresh:0");
+  }
+
+  if(isset($_POST['submitOrder']))
+  {
+    setcookie("orderTotal", $orderTotal, time() + (86400 * 30), "/");
+  }
+
+  if(isset($_POST['clearCart']) || isset($_POST['submitOrder']))
+  {
+    $cartItems = [];
+    setcookie("shoppingCart", json_encode($cartItems), time() + (86400 * 30), "/"); // 86400 = 1 day
+    header("Refresh:0");
+  }
 
   if (!empty ($itemID) && !empty($itemName) && !empty($quantity) && !empty($itemSize) && !empty($itemOption)) {
     //Add item shopping cart if all fields are filled
@@ -37,6 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $newItem->quantity = $quantity;
     $newItem->itemSize = $itemSize;
     $newItem->itemOption = $itemOption;
+    $newItem->price_sm = $price_sm;
+    $newItem->price_med = $price_med;
+    $newItem->price_lg = $price_lg;
 
     //Add new item to the shopping cart
     array_push($cartItems, $newItem);
@@ -54,6 +87,9 @@ $testItem->itemName = "TEST ITEM";
 $testItem->quantity = 1;
 $testItem->itemSize = "LARGE";
 $testItem->itemOption = "NONE";
+$testItem->price_sm = 1;
+$testItem->price_med = 2;
+$testItem->price_lg = 3;
 array_push($cartItems, $testItem);
 setcookie("shoppingCart", json_encode($cartItems), time() + (86400 * 30), "/"); // 86400 = 1 day
 */
