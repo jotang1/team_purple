@@ -11,7 +11,7 @@
 <div class="wrapper">
 <body>
   <!-- Add Header -->
-  <?php include("header.html");?>
+  <?php include("header.php");?>
 
   <section id="hero" style="background-image: url('img/fun1.jpg');">
     <div class="container">

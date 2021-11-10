@@ -1,67 +1,63 @@
+<?php
+  $servername = "aac5e2cw83nfin.cxeottkamtxv.us-east-1.rds.amazonaws.com";
+  $username = "purpleteam";
+  $password = "purpleteam";
+  $db_name = "LYALPurple";
+
+  //Create connection
+  $conn = new mysqli($servername, $username, $password, $db_name);
+
+
+  if($_SERVER['REQUEST_METHOD'] == "POST")
+  {
+    $inUser = $_POST['username'];
+    $inPass = $_POST['password'];
+
+    $login = $conn->prepare("SELECT username FROM LYALPurple.Employees where username=? and password=?");
+    $login->bind_param("ss", $inUser, $inPass);
+    $login->execute();
+    $result = $login->get_result();
+
+    if ($result->num_rows != 0){
+      // Login successful
+      //echo "SUCCESS";
+      setcookie('username', $inUser, time() + (86400 * 30), "/"); // 86400 = 1 day
+      //Redirect to home page
+      //echo '<script>window.location.href = "index.php";</script>';
+      header("Location: /index.php");
+    } else{
+      // Login failed
+      //echo "FAIL";
+    }
+  }
+
+  if(isset($_POST['logout']))
+  {
+    setcookie("username", "", time() - 3600);
+    header("Location: /index.php");
+  }
+?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
-	<style>
-	*{
-		box-sizng:border-box;
-	}
-	
-	body{
-		margin: 0;
-		background:skyblue;
-		text-align: center;
-	}
-	</style>
+  <meta charset="utf-8">
+  <title>Employee Login Form</title>
+  <link rel="stylesheet" href="style2.css">
 </head>
-<body>
 
-	<style type="text/css">
-	#text{
-		
-		height: 25px;
-		border-radius: 5px;
-		padding: 4px;
-		border: solid thin #ass;
-		width: 100%;
-	}
-	
-	#button{
-		padding: 10px;
-		width: 100px;
-		color: white;
-		background-color: blue;
-		border: none;
-	}
-	
-	#box{
-	
-		background-color: grey;
-		margin: auto;
-		width: 300px;
-		padding: 20px;
-	}
-	
-	</style>
-	
-	<h1>Welcome to Love You A Latte! </h1><br>
-	
-	<div id="box"> 
-	
-		<form method="post">
-			<div style="font-size: 30px; margin: 10 px; color: white">Login</div>
-			
-			<div style = "font-size: 20px; margin: 10 px; color: white">Username</div>
-			<input id="text" type="text" name="user_name"><br><br>
-			
-			<div style = "font-size: 20px; margin: 10 px; color: white">Password</div>
-			<input id="text" type="password" name="password"><br><br>
-			
-			<input id ="button" type="submit" value ="Login"><br><br>
-			
-			<a href="signup.php">Click to Signup</a><br><br>
-		</form>	
-	</div>
+<body>
+  <img src="logo.jpg" alt="">
+  <form class="box" method="POST">
+    <h1>Love You A Latte Employee Login</h1>
+
+    <input type="text" name="username" placeholder="Employee Username" id="username">
+    <input type="password" name="password" placeholder="Employee Password" id="password">
+    <input type="submit" value="Login">
+  </form>
+
+  <form action="" method="POST">
+    <br><button name="logout">Log Out</button>
+  </form>
 </body>
 </html>

@@ -1,0 +1,35 @@
+.badge-notify{
+    background: red;
+    position: relative;
+    top:-20px;
+    right: 40px;
+    font-family: sans-serif;
+}
+#addNewProduct{
+    background: transparent;
+    border: 2px solide white;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 50px;
+    margin-top: 50px;
+
+}
+.btn{
+    padding: 10px 20px;
+    background:transparent;
+    border: 2px solide white;
+}
+.btn.info{
+    background: #34495e;
+    padding: 10px 20px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+.row{
+    color: white;
+
+}
+.btn-danger{
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}

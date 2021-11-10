@@ -56,7 +56,7 @@ if ($conn->connect_error) {
 
 <body>
 	<!-- Add Header -->
-  <?php include("header.html");?>
+  <?php include("header.php");?>
 
 		<h1 class="center grey-text">Manage Products in Database</h1>
 		<div>

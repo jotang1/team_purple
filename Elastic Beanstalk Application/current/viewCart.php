@@ -30,7 +30,7 @@
 
 <body>
 	<!-- Add Header -->
-  <?php include("header.html");
+  <?php include("header.php");
   //Get shopping cart array
   $shoppingCart = json_decode($_COOKIE['shoppingCart'], true);
 
