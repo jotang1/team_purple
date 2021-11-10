@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://purpleteam01donotdelete-env.eba-ywsp29gz.us-east-1.elasticbeanstalk.com/index.php?" rel="stylesheet">
+</head>
+<body>
+
+<h1></h1>
+
+<i class="material-icons"></i>
+<i class="material-icons" style="font-size:36px"></i>
+<i class="material-icons" style="font-size:48px;color:red"></i>
+
+<p></p>
+<button style="font-size:24px"> <i class="material-icons"></i></button>
+
+<p></p>
+<i class="material-icons"></i>
+
+</body>
+
+
+<html>
+<body>
+
+<?php
+echo "Time ordered: " . date("::");
+?>
+
+</body>
+
+
+</body>
+</html>
