@@ -41,7 +41,7 @@ $conn = new mysqli($servername, $username, $password, $db_name);
 
           if ($result->num_rows != 0){
             //Display Manage Products link
-            echo "<li><a href='addProduct.php'>Manage Products</a></li>";
+            echo "<li><a href='manageProducts.php'>Manage Products</a></li>";
           }
         }
         ?>
