@@ -1,3 +1,4 @@
+<?php //setcookie("username", "", time() - 3600); // RESET USERNAME COOKIE ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,8 @@
 <div class="wrapper">
 <body>
   <!-- Add Header -->
-  <?php include("header.php");?>
+  <?php
+  include("header.php");?>
 
   <section id="hero" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('img/fun.jpg');">
 	   <div class="container">

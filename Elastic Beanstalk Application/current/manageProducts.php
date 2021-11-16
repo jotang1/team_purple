@@ -115,6 +115,12 @@ if ($conn->connect_error) {
 	  </form>
 
 		<?php
+		$selected['product_name'] = "";
+		$selected['product_id'] = "";
+		$selected['price_sm'] = "";
+		$selected['price_med'] = "";
+		$selected['price_lg'] = "";
+		$selected['description'] = "";
 	  if(isset($_POST['item_search']))
 	  {
 	    $searched = $_POST['item_search'];
@@ -142,10 +148,16 @@ if ($conn->connect_error) {
 		</form>
 
 		<?php
+		$update_id = "";
+		$update_name = "";
+		$update_price_sm = "";
+		$update_price_med = "";
+		$update_price_lg = "";
+		$update_description = "";
+
 			// UPDATE PRODUCT METHOD
 		  if($_SERVER['REQUEST_METHOD'] == "POST")
 		  {
-		   //Something was posted
 			 $update_id = $_POST['update_id'];
 		   $update_name = $_POST['update_name'];
 		   $update_price_sm = $_POST['update_price_sm'];
