@@ -74,47 +74,7 @@ if (isset($_COOKIE['username'])) {
 	<!-- Add Header -->
   <?php include("header.php");?>
 
-	<!-- ADD PRODUCTS -->
-	<h1 class="center grey-text">Manage Products in Database</h1>
-	<div>
-		<h3>*** Add Product to Database ***</h3>
-	  <form action="" method="POST">
-	    <p>Item Name:</p>
-	    <input type="text" name="product_name" size="36" autocomplete="off">
-	    <p>Item Price Small (int or decimal):</p>
-	    <input type="number" step=0.01 name="price_sm" size="36" autocomplete="off">
-	    <p>Item Price Medium (int or decimal):</p>
-	    <input type="number" step=0.01 name="price_med" size="36" autocomplete="off">
-	    <p>Item Price Large (int or decimal):</p>
-	    <input type="number" step=0.01 name="price_lg" size="36" autocomplete="off">
-	    <p>Item Description:</p>
-	    <input type="text" name="description" size="36" autocomplete="off"><br><br>
-	    <input type="submit" value="Add Product"><br><br>
-	  </form>
-	</div>
-
-	<?php
-		// ADD PRODUCTS METHOD
-	  if($_SERVER['REQUEST_METHOD'] == "POST")
-	  {
-	   //Something was posted
-	   $product_name = $_POST['product_name'];
-	   $price_sm = $_POST['price_sm'];
-	   $price_med = $_POST['price_med'];
-	   $price_lg = $_POST['price_lg'];
-	   $description = $_POST['description'];
-
-    if (!empty($product_name) && !is_numeric($product_name) && !empty($price_sm) && !empty($price_med) && !empty($price_lg))
-	   {
-	    //Add item to database
-	    $add_query = $conn->prepare("INSERT INTO LYALPurple.Products (product_name, price_sm, price_med, price_lg, description) VALUES (?, ?, ?, ?, ?)");
-	    $add_query->bind_param("sddds", $product_name, $price_sm, $price_med, $price_lg, $description);
-	    $add_query->execute();
-	   }
-	  }
-	?>
-
-	<!-- ADD PRODUCTS -->
+	<!-- Update PRODUCTS -->
 	<div>
 		<h3>*** Update Product in Database ***</h3>
 		<!-- SEARCH PRODUCTS -->
