@@ -3,7 +3,7 @@
 
 	include("connection.php");
 
-	if ($_SESSION["locked"] !== null) {
+	if (isset($_SESSION["locked"]) && $_SESSION["locked"] !== null) {
 		$difference = time() - $_SESSION["locked"];
 
 		if ($difference > 0) {
@@ -123,7 +123,7 @@
 			<input id="text" type="password" name="password"><br><br>
 
 			<?php
-				if ($_SESSION["login_attempts"] > 2)
+				if (isset($_SESSION["login_attempts"]) && $_SESSION["login_attempts"] > 2)
 				{
 					$_SESSION["locked"] = time();
 					echo '<p style="color: red;">Please wait for 15 minutes</p>';
