@@ -3,6 +3,12 @@
 
 	include("connection.php");
 
+	if(isset($_POST['logout']))
+  {
+    setcookie("username", "", time() - 3600);
+    header("Location: /index.php");
+  }
+
 	if (isset($_SESSION["locked"]) && $_SESSION["locked"] !== null) {
 		$difference = time() - $_SESSION["locked"];
 
@@ -135,6 +141,10 @@
 				<input id ="button" type="submit" value ="Login"><br><br>
 				<?php } ?>
 		</form>
+
+		<form action="" method="POST">
+	    <button id="button" name="logout">Log Out</button>
+	  </form>
 	</div>
 </body>
 </html>
