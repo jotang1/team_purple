@@ -59,6 +59,7 @@
 				<th>Product Name</th>
 				<th>Size</th>
 				<th>Price</th>
+				<th>Creamer</th>
 				<th>Quantity</th>
 				<th>Subtotal</th>
 				<th style="width:10px">Remove Item</th>
@@ -72,6 +73,7 @@
 				<td><?php echo $item['itemName']; ?></td>
 				<td><?php echo $item['itemSize']; ?></td>
 				<td><?php echo "$" . number_format($itemPrice, 2); ?></td>
+				<td><?php echo $item['creamer_option']; ?></td>
 				<td><?php echo $item['quantity']; ?></td>
 				<td><?php echo "$" . number_format($subtotal, 2); ?></td>
 				<td>
@@ -93,6 +95,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
+				<td></td>
 				<td>
 					<form action="" method="POST">
 						<button name="clearCart">Clear Cart</button>
@@ -100,6 +103,7 @@
 				</td>
 				<td><?php echo "$" . number_format($runningTotal, 2); ?></td>
 			<tr>
+				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>

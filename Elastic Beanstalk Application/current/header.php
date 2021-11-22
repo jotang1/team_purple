@@ -43,6 +43,7 @@ $conn = new mysqli($servername, $username, $password, $db_name);
             //Display Manage Products link
             echo "<li><a href='addProducts.php'>Add Products</a></li>";
             echo "<li><a href='updateProducts.php'>Update Products</a></li>";
+            echo "<li><a href='register_employee.php'>Register Employee</a></li>";
           }
         }
         ?>

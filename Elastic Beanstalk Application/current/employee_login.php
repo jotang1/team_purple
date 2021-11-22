@@ -143,8 +143,9 @@
 		</form>
 
 		<form action="" method="POST">
-	    <button id="button" name="logout">Log Out</button>
+	    <button id="button" name="logout">Log Out</button><br><br>
 	  </form>
+		<a href="index.php" id="button" name="home" style="text-decoration: none;">Home</a>
 	</div>
 </body>
 </html>

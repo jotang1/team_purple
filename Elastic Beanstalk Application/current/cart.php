@@ -25,6 +25,7 @@ class cartItem {
   public $price_sm;
   public $price_med;
   public $price_lg;
+  public $creamer_option;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -36,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $price_sm = $_POST['price_sm'];
   $price_med = $_POST['price_med'];
   $price_lg = $_POST['price_lg'];
+  $creamer_option = $_POST['creamer_option'];
   $removeItem = $_POST['removeItem'];
   $orderTotal = $_POST['orderTotal'];
 
@@ -67,6 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $newItem->price_sm = $price_sm;
     $newItem->price_med = $price_med;
     $newItem->price_lg = $price_lg;
+
+    if(!empty($creamer_option)){
+      $newItem->creamer_option = $creamer_option;
+    } else {
+      $newItem->creamer_option = "n/a";
+    }
 
     //Add new item to the shopping cart
     array_push($cartItems, $newItem);
