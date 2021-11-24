@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $order_time = date('Y-m-d H:i:s');
     $products_ordered = $_COOKIE['shoppingCart'];
-    $order_total = $_COOKIE['orderTotal'];
+    $order_total = $orderTotal;
 
     setcookie("lastCart", $_COOKIE['shoppingCart'], time() + (86400 * 30), "/"); // 86400 = 1 day
 
