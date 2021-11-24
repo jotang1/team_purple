@@ -30,12 +30,12 @@ $conn = new mysqli($servername, $username, $password, $db_name);
         <li><a href="viewCart.php">View Cart</a></li>
         <?php
         //If user cookie exists (user is logged in)
-        if (isset($_COOKIE['username'])) {
+        if (isset($_COOKIE['userId'])) {
           //If user is found in employee database (employee is logged in)
-          $user = $_COOKIE['username'];
+          $id = $_COOKIE['userId'];
 
-          $checkEmployee = $conn->prepare("SELECT * FROM LYALPurple.Employees where username=?");
-          $checkEmployee->bind_param("s", $user);
+          $checkEmployee = $conn->prepare("SELECT * FROM LYALPurple.Employees where id=?");
+          $checkEmployee->bind_param("d", $id);
           $checkEmployee->execute();
           $result = $checkEmployee->get_result();
 

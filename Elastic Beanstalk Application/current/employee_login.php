@@ -6,6 +6,7 @@
 	if(isset($_POST['logout']))
   {
     setcookie("username", "", time() - 3600);
+		setcookie("userId", "", time() - 3600);
     header("Location: /index.php");
   }
 
@@ -38,6 +39,7 @@
 					if($user_data['password'] == $password)
 					{
 						$_SESSION['user_id'] = $user_data['id'];
+						setcookie("userId", $user_data['id'], time() + (86400 * 30), "/");
 						setcookie('username', $user_data['username'], time() + (86400 * 30), "/"); // 86400 = 1 day
 						header("Location: index.php");
 						die;

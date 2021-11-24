@@ -1,4 +1,5 @@
 <?php
+include("connection.php");
 // Clear shoppingCart cookie
 //setcookie("shoppingCart", "", time() - 3600);
 
@@ -50,6 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if(isset($_POST['submitOrder']))
   {
     setcookie("orderTotal", $orderTotal, time() + (86400 * 30), "/");
+
+    if (isset($_COOKIE['userId'])) {
+      $customer_id = $_COOKIE['userId'];
+    } else {
+      $customer_id = -1;
+    }
+
+    $order_time = date('Y-m-d H:i:s');
+    $products_ordered = $_COOKIE['shoppingCart'];
+    $order_total = $_COOKIE['orderTotal'];
+
+    setcookie("lastCart", $_COOKIE['shoppingCart'], time() + (86400 * 30), "/"); // 86400 = 1 day
+
+    $receipt_query = "INSERT INTO LYALPurple.Receipts (customer_id, order_time, products_ordered, order_total) VALUES ('$customer_id', '$order_time', '$products_ordered', '$order_total')";
+    mysqli_query($con, $receipt_query);
+    header("Location: /viewReceipt.php");
   }
 
   if(isset($_POST['clearCart']) || isset($_POST['submitOrder']))
@@ -62,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if (!empty ($itemID) && !empty($itemName) && !empty($quantity) && !empty($itemSize)) {
     //Add item shopping cart if all fields are filled
     $newItem = new cartItem();
-    $newItem->itemId = $itemID;
+    $newItem->itemID = $itemID;
     $newItem->itemName = $itemName;
     $newItem->quantity = $quantity;
     $newItem->itemSize = $itemSize;

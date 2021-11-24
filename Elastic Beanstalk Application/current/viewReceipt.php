@@ -32,7 +32,7 @@
 	<!-- Add Header -->
   <?php include("header.php");
   //Get shopping cart array
-  $shoppingCart = json_decode($_COOKIE['shoppingCart'], true);
+  $shoppingCart = json_decode($_COOKIE['lastCart'], true);
 
 	//Get item price from size
 	function getItemPrice(array $item, String $size){
@@ -53,7 +53,13 @@
 
 	$runningTotal = 0;
 	//Populate menu items from shopping cart ?>
+	<h2>Receipt</h2>
 	<p>
+		<?php
+		if (isset($_COOKIE['orderTotal']) && ($_COOKIE['orderTotal'] != 0)){
+			echo "Order placed. Total is: $" . number_format($_COOKIE['orderTotal'],2);
+		}
+		?>
 		<table style="margin-left: auto; margin-right: auto;">
 			<tr>
 				<th>Product Name</th>
@@ -62,7 +68,6 @@
 				<th>Creamer</th>
 				<th>Quantity</th>
 				<th>Subtotal</th>
-				<th style="width:10px">Remove Item</th>
 				<th>GRAND TOTAL</th>
 			</tr>
 	<?php if ($shoppingCart) { foreach($shoppingCart as $item){
@@ -76,12 +81,6 @@
 				<td><?php echo $item['creamer_option']; ?></td>
 				<td><?php echo $item['quantity']; ?></td>
 				<td><?php echo "$" . number_format($subtotal, 2); ?></td>
-				<td>
-					<form action="" method="POST">
-						<input type="hidden" name="removeItem" value="<?php echo array_search($item, $cartItems); ?>">
-						<input type="submit" value="X">
-					</form>
-				</td>
 				<td><?php
 					//Display item reference in shopping cart array
 					//echo array_search($item, $cartItems);
@@ -96,11 +95,6 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td>
-					<form action="" method="POST">
-						<button name="clearCart">Clear Cart</button>
-					</form>
-				</td>
 				<td><?php echo "$" . number_format($runningTotal, 2); ?></td>
 			<tr>
 				<td></td>
@@ -109,12 +103,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
 				<td>
-					<form action="" method="POST">
-						<input type="hidden" name="orderTotal" value=<?php echo $runningTotal; ?>></input>
-				    <button name="submitOrder">Place Order</button>
-				  </form>
 				</td>
 			</table>
 		</p>
