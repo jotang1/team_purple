@@ -47,6 +47,7 @@ $conn = new mysqli($servername, $username, $password, $db_name);
           }
         }
         ?>
+        <li><a href='register_user.php'>Register User</a></li>
         <li><a href="user_login.php">User Login</a></li>
         <li><a href="employee_login.php">Employee Login</a></li>
         <li><a href="dbTest.php">Database Test</a></li>
