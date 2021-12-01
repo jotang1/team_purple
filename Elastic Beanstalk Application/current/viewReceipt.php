@@ -57,7 +57,13 @@
 	<p>
 		<?php
 		if (isset($_COOKIE['orderTotal']) && ($_COOKIE['orderTotal'] != 0)){
-			echo "Order placed. Total is: $" . number_format($_COOKIE['orderTotal'],2);
+			echo "Order placed. Total is: $" . number_format($_COOKIE['orderTotal'],2) . "<br>";
+			//If user cookie exists (user is logged in)
+			if (isset($_COOKIE['username'])) {
+				echo "User: " . $_COOKIE['username'];
+			} else {
+				echo "User: " . "Guest";
+			}
 		}
 		?>
 		<table style="margin-left: auto; margin-right: auto;">
